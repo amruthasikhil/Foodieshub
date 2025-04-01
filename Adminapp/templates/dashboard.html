@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends "admin_index.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div class="d-flex justify-content-start align-items-center">
+  <div class="row">
+    <div class="card" style="width: 18rem;">
+        <p class="card-title"><b>Categories</b>  </p>
+        <img src="https://res.cloudinary.com/rainforest-cruises/images/c_fill,g_auto/f_auto,q_auto/w_1120,h_732,c_fill,g_auto/v1661347444/india-food-butter-chicken/india-food-butter-chicken-1120x732.jpg" class="card-img-top" alt="Sunset Over the Sea"/>
+        <div class="card-body">
+          <p class="card-text">Discover mouthwatering categories of flavors and cuisines! From sweet treats to savory delights, " 🍽️✨</p>
+         
+         <div class="px-2 py-2" style="background-color: rgb(226, 226, 234);border-radius: 7px;">
+          <p class="card-text"><b>Total Category added = </b>  <span class="px-1" style="color: black;background-color: orange;    border:1px solid orange;border-radius: 20px;">{{totalcategorycount}}</span></p>
+          <a href="{%  url 'viewcategory' %}" class="btn btn-primary">View Now</a>
+         </div>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <p class="card-title"><b>Products</b> </p>
+        <img src="https://res.cloudinary.com/rainforest-cruises/images/c_fill,g_auto/f_auto,q_auto/w_1120,h_732,c_fill,g_auto/v1661347361/india-food-tandoori-chicken/india-food-tandoori-chicken-1120x732.jpg" class="card-img-top" alt="Sunset Over the Sea"/>
+        <div class="card-body">
+          <p class="card-text">"Indulge in  delicious products crafted for every craving! From classic favorites to new delights" 🍽️✨</p>
+         
+          <div class="px-2 py-2" style="background-color: rgb(226, 226, 234);border-radius: 7px;">
+            <p class="card-text">Total Product added = <span class="px-1" style="color: black;background-color: orange;    border:1px solid orange;border-radius: 20px;">{{totalproductcount}}</span></p>
+            <a href="{%  url 'viewproducts' %}" class="btn btn-primary">View Now</a>
+
+</div>
+
+        </div>
+      </div>
+
+    
+
+  </div>
+</div>
+</body>
+</html>
+{% endblock %}

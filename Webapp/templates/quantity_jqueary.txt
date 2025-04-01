@@ -1,0 +1,12 @@
+ <script>
+         $(document).ready(function(){
+        $('#qty').change(function(){
+           
+
+            let qty= document.getElementById("qty").value;
+            let price=document.getElementById("price").value;
+            let result=parseInt(qty)*parseInt(price)
+           
+            document.getElementById("total").value = result
+        })})
+    </script>

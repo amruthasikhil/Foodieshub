@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'web/registration/fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'web/registration/css/style.css' %}">
+</head>
+<body>
+
+
+
+        <!-- Sign up form -->
+        <div class="container mb-5"></div>
+
+        <!-- Sing in  Form -->
+            <div class="container mt-5">
+                <div class="signin-content mt-5">
+                    <div class="signin-image">
+                        <figure><img src="https://www.thenaturalfoodies.com/wp-content/uploads/2019/08/welove_foodies_t.png" alt="sing up image"></figure>
+                        <a href="{% url 'userreg' %}" class="signup-image-link">Create an account</a>
+                    </div>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" action="{% url 'webuserloginpost' %}" class="register-form" id="login-form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="your_name" id="your_name" placeholder="Your Name"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                            </div>
+                        </form>
+                      
+                    </div>
+               
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'web/registration/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'web/registration/js/main.js' %}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% if messages %}
+  
+      {% for i in messages %}
+    
+          {% if i.tags == "success" %}
+  
+            <script>
+                          Swal.fire({
+                          icon: "success",
+                          title: "Success",
+                          text: "{{i}}"
+                        });
+  
+            </script>
+  
+          {% elif i.tags == "error" %}
+  
+          <script>
+            Swal.fire({
+            icon: "error",
+            title: "Something error",
+            text: "{{i}}"
+          });
+
+</script>
+  
+          {% elif i.tags == "warning" %}
+  
+            <script>
+    
+                  swal('{{i}}','','warning');
+  
+            </script>
+  
+          {% else %}
+  
+            <script>
+    
+                  swal('{{i}}','','info');
+  
+            </script>
+  
+          {% endif %}
+        
+        {% endfor %}
+  
+    {% endif %}
+  
+  
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

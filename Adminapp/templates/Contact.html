@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% extends "admin_index.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Table</title>
+    <!-- Bootstrap CSS -->
+</head>
+<body>
+    <div class="container">
+        <div class="table-responsive">
+            <h5>View Contacts</h4>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr style="background-color: rgb(233, 230, 230);">
+                        <th>Slno</th>
+                        <th> Name</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in data %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{i.name}}</td>
+                        <td>{{i.email}}</td>
+                        <td>{{i.subject}}</td>
+                        <td>{{i.message}}</td>
+                       
+                           <td> <a href="{% url 'contactdelete' coid=i.id %}" class="btn btn-danger btn-sm">Delete</a>
+                           </td>
+                    </tr>
+                    {% endfor %}
+                    <!-- Additional rows can be added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+  
+</body>
+</html>
+{%  endblock %}

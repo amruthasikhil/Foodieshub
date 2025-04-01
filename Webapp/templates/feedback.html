@@ -1,0 +1,273 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Foodieshub</title>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="icon" href="https://png.pngtree.com/element_our/png/20180930/food-icon-design-vector-png_120564.jpg">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'web/assets/css/bootstrap.min.css' %}">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="{% static 'web/assets/css/animate.css' %}">
+    <!-- owl carousel CSS -->
+    <link rel="stylesheet" href="{% static 'web/assets/css/owl.carousel.min.css' %}">
+    <!-- themify CSS -->
+    <link rel="stylesheet" href="{% static 'web/assets/css/themify-icons.css' %}">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="{% static 'web/assets/css/flaticon.css' %}">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="{% static 'web/assets/css/magnific-popup.css' %}">
+    <!-- swiper CSS -->
+    <link rel="stylesheet" href="{% static 'web/assets/css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'web/assets/css/gijgo.min.css' %}">
+    <link rel="stylesheet" href="{% static 'web/assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'web/assets/css/all.css' %}">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="{% static 'web/assets/css/style.css' %}">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="{% static 'web/assets/css/style.css' %}">
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+ 
+h1 {
+    margin-bottom: 40px;
+}
+
+label {
+    color: #333;
+}
+
+.btn-send {
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    width: 80%;
+    margin-left: 3px;
+    }
+.help-block.with-errors {
+    color: #ff5050;
+    margin-top: 65px;
+
+}
+
+.card{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <script>
+        AOS.init();
+      </script>
+    <!--::header part start::-->
+    <header class="main_menu home_menu">
+        <div class="container" data-aos="fade-down">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="{% url 'homepage' %}"><span style="font-weight: bold;">Foodieshub</span> </a></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse main-menu-item justify-content-end"
+                            id="navbarSupportedContent">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'homepage' %}">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'about' %}">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'servicesuserview' %}">Services</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'foodmenu' %}">Menu</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'chef' %}">Chefs</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Category
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        {% for i in data %}
+                                        <a class="dropdown-item" href="blog.html">{{i.categoryname}}</a>
+                                        {% endfor %}
+                                    </div>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'contactuser'  %}">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="menu_btn" style="display: inline-block;">
+                            {% if request.session.name %}
+
+                            <li style="list-style-type: none;" class="nav-item dropdown">
+                                <p class="nav-link dropdown-toggle btn btn-primary"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Welcome <i class="bi bi-emoji-smile"></i>  {{request.session.name }} 
+                                </p>
+                                <div class="dropdown-menu" style="color: black;" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item"  style="color: black !important;" href="{% url 'cartpage'  %}">Cart <span> <i class="bi bi-cart"></i></span> <span class="px-1" style="color: white;background-color: orange;    border:1px solid orange;border-radius: 20px;"> {{tot_cartcount}} </span>  </a>
+                                    <a class="dropdown-item"  style="color: black !important;" href="">Settings <i class="bi bi-gear"></i> </a>
+
+                                    <a class="dropdown-item"  style="color: black !important;" href="{% url 'webuserlogout'  %}">Log Out</a>
+
+                                </div>
+                            </li>
+                            
+                            
+                            {% else %}
+                            <a href="{% url 'userreg' %}" class="btn_1 d-none d-sm-block">Register / Login</a>
+                            {% endif %}
+                        </div>
+                        
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container mt-5">
+       
+
+    
+        <div class="row">
+            <div class="col-lg-6 mt-3 mx-auto">
+               
+                    <div class="card-body bg-light py-5" style="border-radius: 20px;box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;">
+                        <div class="container" >
+                            <form id="contact-form" role="form" action="{% url 'feedbackformpost' %}" method="post">
+                                {% csrf_token %}
+                                
+                                <div class="controls">
+                                    <!-- Full Name Field -->
+                                 
+        
+                                    <!-- Email Field -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="form_email" class="form-label">We value your taste! Submit your feedback and help us serve you better. 🍽️✨
+
+                                                    Your opinion matters! Let us know what you love and what we can improve to make your foodie experience even more delicious. 🍕🍔🍣</label>
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                    <!-- Message Field -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="form_message" class="form-label">Feedback </label>
+                                                <textarea id="form_message" name="message" class="form-control" required placeholder="Write your message here..." rows="5"  data-error="Please leave us a message."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                    <!-- Submit Button -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="submit" class="btn btn-primary btn-send pt-2 btn-block" value="Send Message">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer class="footer-area mt-5" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-sm-6 col-md-3 col-lg-3">
+                    <div class="single-footer-widget footer_1">
+                        <h4>About Us</h4>
+                        <p>Heavenly flavors await at FoodiesHub – where every bite is a blessing, and every meal is a celebration of taste and tradition.</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-md-2 col-lg-3">
+                    <div class="single-footer-widget footer_2">
+                        <h4>Important Link</h4>
+                        <div class="contact_info">
+                            <ul>
+                                <li><a href="{% url 'homepage' %}">FoodiesApp</a></li>
+                                <li><a href="{% url 'foodmenu' %}"> Menu</a></li>
+                                <li><a href="{% url 'about' %}">About</a></li>
+                                <li><a href="{% url 'contactuser'  %}">Contact</a></li>
+                                <li><a href="{% url 'chef'  %}"> Our Chefs</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-md-3 col-lg-3">
+                    <div class="single-footer-widget footer_2">
+                        <h4>Contact us</h4>
+                        <div class="contact_info">
+                            <p><span> Address :</span> Food Court, Focus Mall, Mavoor Road, Kozhikode, Kerala, India </p>
+                            <p><span> Phone :</span> +91 495 123 4567</p>
+                            <p><span> Email : </span>info@kozhikodensfoodcourt.com </p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-md-4 col-lg-3">
+                    <div class="single-footer-widget footer_3">
+                        <h4>Share Your Thoughts!</h4>
+                        <p>We value your taste! Submit your feedback and help us serve you better. 🍽️✨
+
+
+
+
+
+
+
+                        </p>
+                        <form action="#">
+                            <div class="form-group">
+                                <div class="input-group ">
+                                    
+                                    <div class="input-group-append">
+                                        <a class="btn" href="{% url 'feedbackform' %}"><i class="fas fa-paper-plane"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright_part_text">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="{% url 'homepage' %}">Foodieshub</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
