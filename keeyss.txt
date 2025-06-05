@@ -1,2 +1,1 @@
-id : rzp_test_MMwua6oGM7f6Bi
-secret : FYZEoZkAuia58N8GlRTUGAkE
+
