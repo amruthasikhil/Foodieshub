@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
+    <title>Sign Up Form</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="{% static 'web/registration/fonts/material-icon/css/material-design-iconic-font.min.css' %}">
@@ -24,19 +24,21 @@
                         <!-- <img src="https://i.pinimg.com/originals/30/7e/81/307e8154e87ffc5d2f823cd50b174dee.gif" alt=""> -->
 
                         <h2 class="form-title">Sign up</h2>
-                        <form method="POST" action="{% url 'userregistrationpost' %}" >
+                        <form method="POST" action="{% url 'userregistrationpost' %}"  onsubmit="return validationcheck()">
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name"/>
+                                <input type="text" name="name" id="name"   title="Only letters and spaces allowed"    placeholder="Your Name"/>
+                               
                             </div>
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-email"></i></label>
                                 <input type="email" name="email" id="email" placeholder="Your Email"/>
+                              
                             </div>
                             <div class="form-group">
                                 <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="pwd" id="pass" placeholder="Password"/>
+                                <input type="password" name="pwd" id="passd" placeholder="Password"/>
                             </div>
                             <div class="form-group">
                                 <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
@@ -46,6 +48,16 @@
                                 <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
                                 <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
                             </div>
+                            <div> <span id="span1"   style="color: red;background-color: aliceblue; " ></span><br>
+                            
+                                <span id="span2"   style="color: red;background-color: aliceblue; " ></span><br>
+
+                                <span id="span3"   style="color: red;background-color: aliceblue; " ></span>
+                            
+                            </div>
+                            
+                            
+                            
                             <div class="form-group form-button">
                                 <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
                             </div>
@@ -54,8 +66,12 @@
                     <div class="signup-image">
 
                         <figure>
-                            <img src="https://www.thenaturalfoodies.com/wp-content/uploads/2019/08/welove_foodies_t.png"></figure>
-                        <a href="{% url 'webuserlogin' %}" class="signup-image-link">I am already member</a>
+                            <img style="border-radius: 150px;" src="https://images.squarespace-cdn.com/content/v1/5beb00f0fcf7fd94c2cdd772/8368adc1-a309-482d-a877-307bee4d8452/foodiehub_logo_gif_color.gif"></figure>
+                        
+                                                 <a  href="{% url 'homepage' %}" class="btn btn-light signup-image-link mt-2 mb-2" style="text-decoration: none;">Back to Homepage</a>
+
+                        
+                            <a href="{% url 'webuserlogin' %}" style="text-decoration: none;color: blue;" class="signup-image-link">I am already member</a>
                     </div>
                 </div>
             </div>
@@ -69,5 +85,60 @@
     <!-- JS -->
     <script src="{% static 'web/registration/vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'web/registration/js/main.js' %}"></script>
+
+
+    <script>
+
+function validationcheck() {
+    var isValid = true;
+
+    // Name validation
+    var name = document.getElementById("name").value.trim();
+    var nameerror = document.getElementById("span1");
+      var pwd = document.getElementById("passd").value;
+    var repwd = document.getElementById("re_pass").value;
+    var pwderror = document.getElementById("span3");
+
+     var email = document.getElementById("email").value.trim();
+    var emailpattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+    var emailerror = document.getElementById("span2");
+
+
+    if (name.length === 0) {
+        nameerror.innerHTML = "•  Name cannot be empty";
+        isValid = false;
+    } else if (name.length < 3) {
+        nameerror.innerHTML = "• Name should contain at least 3 letters";
+        isValid = false;
+    } else {
+        nameerror.innerHTML = "";
+    }
+
+    // Email validation
+   
+
+    if (!emailpattern.test(email)) {
+        emailerror.innerHTML = "• Email is not valid";
+        isValid = false;
+    } else {
+        emailerror.innerHTML = "";
+    }
+
+    // Password validation
+  
+    if (pwd.length < 8) {
+        pwderror.innerHTML = "• Password must be at least 8 characters";
+        isValid = false;
+    } else if (pwd !== repwd) {
+        pwderror.innerHTML = "• Passwords do not match";
+        isValid = false;
+    } else {
+        pwderror.innerHTML = "";
+    }
+
+    return isValid;
+}
+
+    </script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

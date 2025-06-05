@@ -71,10 +71,10 @@
                                     <a class="nav-link" href="{% url 'chef' %}">Chefs</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Category
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <div class="dropdown-menu">
                                         {% for i in data %}
                                         <a class="dropdown-item" href="{% url 'categoryfilter' catname=i.categoryname %}">{{i.categoryname}}</a>
                                         {% endfor %}
@@ -207,11 +207,9 @@
                     <div class="intro_video_iner text-center">
                         <h2>Expect The Best</h2>
                         <div class="intro_video_icon">
-                            <a id="play-video_1" class="video-play-button popup-youtube"
-                                href="https://www.youtube.com/watch?v=pBFQdxA-apI">
-                                <span class="ti-control-play"></span>
-                            </a>
-                        </div>
+                           <h3 class="text-white">Discover handpicked dishes that delight every craving. Savor flavors crafted for true food lovers.
+
+</h4>
                     </div>
                 </div>
             </div>

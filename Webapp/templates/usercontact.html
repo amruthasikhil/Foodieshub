@@ -64,43 +64,43 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'chef' %}">Chefs</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Category
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    {% for i in data %}
-                                    <a class="dropdown-item" href="blog.html">{{i.categoryname}}</a>
-                                    {% endfor %}
-                                </div>
-                            </li>
+                             <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Category
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        {% for i in data %}
+                                        <a class="dropdown-item" href="{% url 'categoryfilter' catname=i.categoryname %}">{{i.categoryname}}</a>
+                                        {% endfor %}
+                                    </div>
+                                </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'contactuser'  %}">Contact</a>
                             </li>
                         </ul>
                     </div>
-                    <div class="menu_btn" style="display: inline-block;">
-                        {% if request.session.name %}
+                     <div class="menu_btn" style="display: inline-block;">
+                            {% if request.session.name %}
 
-                        <li style="list-style-type: none;" class="nav-item dropdown">
-                            <p class="nav-link dropdown-toggle btn btn-primary"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Welcome <i class="bi bi-emoji-smile"></i>  {{request.session.name }} 
-                            </p>
-                            <div class="dropdown-menu" style="color: black;" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item"  style="color: black !important;" href="{% url 'cartpage'  %}">Cart <span> <i class="bi bi-cart"></i></span> <span class="px-1" style="color: white;background-color: orange;    border:1px solid orange;border-radius: 20px;"> {{tot_cartcount}} </span>  </a>
-                                <a class="dropdown-item"  style="color: black !important;" href="">Settings <i class="bi bi-gear"></i> </a>
+                            <li style="list-style-type: none;" class="nav-item dropdown">
+                                <p class="nav-link dropdown-toggle btn btn-primary"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Welcome <i class="bi bi-emoji-smile"></i>  {{request.session.name }} 
+                                </p>
+                                <div class="dropdown-menu" style="color: black;" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item"  style="color: black !important;" href="{% url 'cartpage'  %}">Cart <span> <i class="bi bi-cart"></i></span> <span class="px-1" style="color: white;background-color: orange;    border:1px solid orange;border-radius: 20px;"> {{tot_cartcount}} </span>  </a>
+                                    <a class="dropdown-item"  style="color: black !important;" href="{% url 'changepassword' %}">Change Password <i class="bi bi-gear"></i> </a>
 
-                                <a class="dropdown-item"  style="color: black !important;" href="{% url 'webuserlogout'  %}">Log Out</a>
+                                    <a class="dropdown-item"  style="color: black !important;" href="{% url 'webuserlogout'  %}">Log Out</a>
 
-                            </div>
-                        </li>
-                        
-                        
-                        {% else %}
-                        <a href="{% url 'userreg' %}" class="btn_1 d-none d-sm-block">Register / Login</a>
-                        {% endif %}
-                    </div>
+                                </div>
+                            </li>
+                            
+                            
+                            {% else %}
+                            <a href="{% url 'userreg' %}" class="btn_1 d-none d-sm-block">Register / Login</a>
+                            {% endif %}
+                        </div>
                     
                 </nav>
                 </div>
@@ -279,17 +279,16 @@
                 <div class="single-footer-widget footer_3">
                     <h4>Newsletter</h4>
                     <p>Exciting offers are just around the corner! Stay tuned for amazing discounts and deals on all your favorite products.</p>
-                    <form action="#">
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder='Email Address'
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
-                                <div class="input-group-append">
-                                    <button class="btn" type="button"><i class="fas fa-paper-plane"></i></button>
+                  <form action="#">
+                            <div class="form-group">
+                                <div class="input-group ">
+                                    
+                                    <div class="input-group-append">
+                                        <a class="btn" href="{% url 'feedbackform' %}"><i class="fas fa-paper-plane"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
                 </div>
             </div>
         </div>
@@ -297,7 +296,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Foodieshub</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="{% url 'homepage' %}">Foodieshub</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                 </div>
                

@@ -146,7 +146,16 @@
 
                                     <input class="form-control mt-2" name="pname" placeholder="Total price" value="{{productmore.product_name}}"  type="hidden">
                                     <input class="form-control mt-2" placeholder="Total price" name="FDD" value="{{request.session.name }} " type="hidden">                             </div>
-                                <div class="cart mt-4 align-items-center"> <button  type="submit"  style="border-radius: 5px;" class="btn btn-success text-uppercase mr-2 px-4">Add to cart</button> </div>
+
+
+                                <div class="cart mt-4 align-items-center">
+                                    {% if request.session.name %}
+                                    <button  type="submit"  style="border-radius: 5px;" class="btn btn-success text-uppercase mr-2 px-4">Add to cart</button> 
+                                    {%  else %}
+                                        
+                                    <a href="{% url 'webuserlogin' %}" style="border-radius: 5px;" class="btn btn-primary text-uppercase mr-2 px-4">Login Now to Buy</a>
+                                    {%  endif %}
+                                </div>
                             
                             </form>
                             

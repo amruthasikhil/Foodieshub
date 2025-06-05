@@ -49,7 +49,7 @@ def Servicepageuser(request):
     lid=request.session['userid']
     countofcart=CartDb.objects.filter(username=lid)
     tot_cartcount=countofcart.count()
-    return render(request,"services.html",{"servicedata":servicedata,"tot_cartcount":tot_cartcount})
+    return render(request,"services.html",{"servicedata":servicedata,"tot_cartcount":tot_cartcount,"data":data})
 
 def Foodmenu(request):
     data=CategoryDb.objects.all()
@@ -57,14 +57,20 @@ def Foodmenu(request):
     lid=request.session['userid']
     countofcart=CartDb.objects.filter(username=lid)
     tot_cartcount=countofcart.count()
-    return render(request,"food_menu.html",{"data":data,"productdata":productdata,"tot_cartcount":tot_cartcount})
+    return render(request,"food_menu.html",{"data":data,"productdata":productdata,"tot_cartcount":tot_cartcount,"val":"yes"})
 
 def Foodmenusearch(request):
     if request.method == "POST":
         data=CategoryDb.objects.all()
         search_text=request.POST.get("search")
         qs=ProductDb.objects.filter(product_name__contains=search_text)
-        return render(request,"food_menu.html",{"data":data,"productdata":qs})
+
+        totalqs = qs.count()
+        if totalqs >0 :
+            print(qs,"==================================================444444444444444444444444444==========================================================================")
+            return render(request,"food_menu.html",{"data":data,"productdata":qs,"val":"yes"})
+        else:
+             return render(request,"food_menu.html",{"data":data,"productdata":qs,"val":"no"})
 
 
 
@@ -73,20 +79,24 @@ def Categorloadingypage(request):
     return render(request,"Home.html",{"data":data,"data":data})
 
 def Changepassword(request):
-    return render(request,"change_password.html")
+    lid=request.session['userid']
+    countofcart=CartDb.objects.filter(username=lid)
+    tot_cartcount=countofcart.count()
+    data=CategoryDb.objects.all()
+    return render(request,"change_password.html",{"data":data,"tot_cartcount":tot_cartcount})
 
 
 def Filteredcategory(request,catname):
     productdata=ProductDb.objects.filter(categoryname=catname)
     print("okkk")
     data=CategoryDb.objects.all()
-    return render(request,"food_menu.html",{"data":data,"productdata":productdata})
+    return render(request,"food_menu.html",{"data":data,"productdata":productdata,"val":"yes"})
 
 def Filteredcategory_home(request,catname):
     productdata=ProductDb.objects.filter(categoryname=catname)[:4]
     print("ok=================================kk")
     data=CategoryDb.objects.all()
-    return render(request,"home.html",{"data":data,"productdata":productdata})
+    return render(request,"home.html",{"data":data,"productdata":productdata,"val":"yes"})
 
 def Contactpage(request):
     data=CategoryDb.objects.all()
@@ -141,6 +151,10 @@ def Cartpage(request):
     data=CategoryDb.objects.all()
     uid=request.session['userid']
     obj=CartDb.objects.filter(username=uid)
+    lid=request.session['userid']
+
+    countofcart=CartDb.objects.filter(username=lid)
+    tot_cartcount=countofcart.count()
     productitems_incart=[]
     for i in obj:
         productname= i.productname
@@ -179,7 +193,7 @@ def Cartpage(request):
     request.session['subtotal']=final_total
     request.session['delivery_charge']=delivery_charge
     productdata=ProductDb.objects.all()[:4]
-    return render(request,"cartpage.html",{"productdata":productdata,"cdata":data,"data":productitems_incart,"subtotal":subtotal,"delivery_charge":delivery_charge,"final_total":final_total})
+    return render(request,"cartpage.html",{"tot_cartcount":tot_cartcount,"productdata":productdata,"cdata":data,"data":productitems_incart,"subtotal":subtotal,"delivery_charge":delivery_charge,"final_total":final_total})
 
 def Removecart(request,cartid):
     obj=CartDb.objects.get(id=cartid)
@@ -193,6 +207,9 @@ def Checkoutpage(request):
 
 def paymentnavigation(request):
     uid=request.session['userid']
+    lid=request.session['userid']
+    countofcart=CartDb.objects.filter(username=lid)
+    tot_cartcount=countofcart.count()
     obj=OrderDb.objects.get(Name=uid)
     customername_ob=RegistrationDb.objects.get(id=uid)
     customer=customername_ob.name
@@ -206,7 +223,7 @@ def paymentnavigation(request):
         order_currency = 'INR'
         client =razorpay.Client(auth=('rzp_test_MMwua6oGM7f6Bi','FYZEoZkAuia58N8GlRTUGAkE'))
         payment=client.order.create({'amount':amoount,'currency': order_currency})
-    return render(request,"paymentnavigationpage.html",{'amount_str':amount_str,"customer":customer})
+    return render(request,"paymentnavigationpage.html",{'amount_str':amount_str,"customer":customer,"tot_cartcount":tot_cartcount})
 
 
 def Checkoutpost(request):

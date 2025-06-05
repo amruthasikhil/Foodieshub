@@ -68,9 +68,9 @@
                                     <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Category
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <div class="dropdown-menu">
                                         {% for i in data %}
-                                        <a class="dropdown-item" href="blog.html">{{i.categoryname}}</a>
+                                        <a class="dropdown-item" href="{% url 'categoryfilter' catname=i.categoryname %}">{{i.categoryname}}</a>
                                         {% endfor %}
                                     </div>
                                 </li>
@@ -89,7 +89,7 @@
                                 </p>
                                 <div class="dropdown-menu" style="color: black;" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item"  style="color: black !important;" href="{% url 'cartpage'  %}">Cart <span> <i class="bi bi-cart"></i></span> <span class="px-1" style="color: white;background-color: orange;    border:1px solid orange;border-radius: 20px;"> {{tot_cartcount}} </span>  </a>
-                                    <a class="dropdown-item"  style="color: black !important;" href="">Settings <i class="bi bi-gear"></i> </a>
+                                    <a class="dropdown-item"  style="color: black !important;" href="{% url 'changepassword' %}">Change Password <i class="bi bi-gear"></i> </a>
 
                                     <a class="dropdown-item"  style="color: black !important;" href="{% url 'webuserlogout'  %}">Log Out</a>
 
@@ -211,23 +211,7 @@
     <!--::chefs_part end::-->
 
     <!-- intro_video_bg start-->
-    <section class="intro_video_bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro_video_iner text-center">
-                        <h2>Expect The Best</h2>
-                        <div class="intro_video_icon">
-                            <a id="play-video_1" class="video-play-button popup-youtube"
-                                href="https://www.youtube.com/watch?v=pBFQdxA-apI">
-                                <span class="ti-control-play"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+   
     <!-- intro_video_bg part start-->
 
     <!-- footer part start-->
@@ -271,11 +255,10 @@
                         <p>Exciting offers are just around the corner! Stay tuned for amazing discounts and deals on all your favorite products.</p>
                         <form action="#">
                             <div class="form-group">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder='Email Address'
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
+                                <div class="input-group ">
+                                    
                                     <div class="input-group-append">
-                                        <button class="btn" type="button"><i class="fas fa-paper-plane"></i></button>
+                                        <a class="btn" href="{% url 'feedbackform' %}"><i class="fas fa-paper-plane"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -287,7 +270,7 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Foodieshub</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="{% url 'homepage' %}">Foodieshub</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
                    

@@ -24,13 +24,15 @@
             <div class="container mt-5">
                 <div class="signin-content mt-5">
                     <div class="signin-image">
-                        <figure><img src="https://www.thenaturalfoodies.com/wp-content/uploads/2019/08/welove_foodies_t.png" alt="sing up image"></figure>
-                        <a href="{% url 'userreg' %}" class="signup-image-link">Create an account</a>
+                            <img style="border-radius: 150px;" src="https://images.squarespace-cdn.com/content/v1/5beb00f0fcf7fd94c2cdd772/8368adc1-a309-482d-a877-307bee4d8452/foodiehub_logo_gif_color.gif"></figure>
+                         <a  href="{% url 'homepage' %}" class="btn btn-light signup-image-link mt-2 mb-2" style="text-decoration: none;">Back to Homepage</a>
+                       
+                            <a href="{% url 'userreg' %}" class="signup-image-link" style="text-decoration: none;color: blue;">Create an account</a>
                     </div>
 
                     <div class="signin-form">
                         <h2 class="form-title">Sign up</h2>
-                        <form method="POST" action="{% url 'webuserloginpost' %}" class="register-form" id="login-form">
+                        <form method="POST" action="{% url 'webuserloginpost' %}" class="register-form" id="login-form" onsubmit="return validcheck()">
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
@@ -43,6 +45,11 @@
                             <div class="form-group">
                                 <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
                                 <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                            </div>
+                            <div>
+                               <span id="span1"   style="color: red;background-color: aliceblue; " ></span><br>
+
+                                <span id="span2"   style="color: red;background-color: aliceblue; " ></span>
                             </div>
                             <div class="form-group form-button">
                                 <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
@@ -109,6 +116,63 @@
   
     {% endif %}
   
+    <script>
+          
+          function validcheck(){
+         var isvalid = true;
+
+         var name = document.getElementById("your_name").value.trim()
+         var pwd = document.getElementById("your_pass").value
+
+         var nameerror = document.getElementById("span1")
+          var pwderror = document.getElementById("span2")
+
+          if (name.length === 0){
+           
+            nameerror.innerHTML = "• Name is not valid"
+            isvalid = false;
+
+          }
+          else if(name <3 ){
+
+             nameerror.innerHTML = "•  Name is not valid"
+            isvalid = false;
+            
+          }
+
+          else{
+
+             nameerror.innerHTML = ""
+            
+          }
+
+
+
+           if (pwd.length === 0){
+           
+            pwderror.innerHTML = "• Password is not valid"
+            isvalid = false;
+
+          }
+          else if(pwd.length <8 ){
+
+             pwderror.innerHTML = "• Password should be 8 characters"
+            isvalid = false;
+            
+          }
+
+          else{
+
+             pwderror.innerHTML = ""
+            
+          }
+
+          return isvalid;
+
+          }
+
+
+    </script>
   
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
